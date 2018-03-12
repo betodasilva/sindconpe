@@ -28,7 +28,7 @@ gulp.task('sass-watch', ['minify'], browserSync.reload());
 
 gulp.task('watch', function() {
     browserSync.init({
-        proxy: "recantoalternativo.vm",
+        proxy: "sindconpe.vm",
         injectChanges: true,
     });
     gulp.watch('*.php').on('change', browserSync.reload);
