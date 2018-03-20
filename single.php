@@ -11,27 +11,38 @@ get_header();
 ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+		<main id="main" class="site-main vt-space-sm">
+			<div class="container">
+				<div class="row gutters">
+					<div class="col col-8 bg-white col-content">
+						<?php
+						while ( have_posts() ) :
+							the_post();
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+							get_template_part( 'template-parts/content', get_post_type() );
 
-			get_template_part( 'template-parts/content', get_post_type() );
+							// If comments are open or we have at least one comment, load up the comment template.
+							
 
-			the_post_navigation();
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
-
-		endwhile; // End of the loop.
-		?>
+						endwhile; // End of the loop.
+						/*the_post_navigation( array(
+							'prev_text'		=>	__( 'Artigo anterior: %title' ),
+							'next_text'		=> 	__( 'Próximo Artigo: %title' ),
+							'in_same_term'	=>	true,
+							'taxonomy'		=>	__( 'category' )
+						)); */
+						?>
+					</div>
+					<div class="col col-4">
+						<?php get_sidebar(); ?>
+					</div>
+				</div>
+				
+			</div>		
+		
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();

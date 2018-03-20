@@ -1,13 +1,13 @@
 <?php
 /**
- * sindcon functions and definitions
+ * sindconpe functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package sindcon
+ * @package sindconpe
  */
 
-if ( ! function_exists( 'sindcon_setup' ) ) :
+if ( ! function_exists( 'sindconpe_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -15,14 +15,14 @@ if ( ! function_exists( 'sindcon_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function sindcon_setup() {
+	function sindconpe_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on sindcon, use a find and replace
-		 * to change 'sindcon' to the name of your theme in all the template files.
+		 * If you're building a theme based on sindconpe, use a find and replace
+		 * to change 'sindconpe' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'sindcon', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'sindconpe', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -42,9 +42,11 @@ if ( ! function_exists( 'sindcon_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
+		add_image_size( 'post_image', 760, 280, true );
+
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'sindcon' ),
+			'menu-1' => esc_html__( 'Primary', 'sindconpe' ),
 		) );
 
 		/*
@@ -60,7 +62,7 @@ if ( ! function_exists( 'sindcon_setup' ) ) :
 		) );
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'sindcon_custom_background_args', array(
+		add_theme_support( 'custom-background', apply_filters( 'sindconpe_custom_background_args', array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
@@ -81,7 +83,7 @@ if ( ! function_exists( 'sindcon_setup' ) ) :
 		) );
 	}
 endif;
-add_action( 'after_setup_theme', 'sindcon_setup' );
+add_action( 'after_setup_theme', 'sindconpe_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -90,47 +92,93 @@ add_action( 'after_setup_theme', 'sindcon_setup' );
  *
  * @global int $content_width
  */
-function sindcon_content_width() {
+function sindconpe_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'sindcon_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'sindconpe_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'sindcon_content_width', 0 );
+add_action( 'after_setup_theme', 'sindconpe_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function sindcon_widgets_init() {
+function sindconpe_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'sindcon' ),
+		'name'          => esc_html__( 'Sidebar', 'sindconpe' ),
 		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'sindcon' ),
+		'description'   => esc_html__( 'Adicione widgets aqui.', 'sindconpe' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Area Destaque Coluna 01', 'sindconpe' ),
+		'id'            => 'ad-col-1',
+		'description'   => esc_html__( 'Adicione widgets aqui.', 'sindconpe' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Area Destaque Coluna 02', 'sindconpe' ),
+		'id'            => 'ad-col-2',
+		'description'   => esc_html__( 'Adicione widgets aqui.', 'sindconpe' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Area Destaque Coluna 03', 'sindconpe' ),
+		'id'            => 'ad-col-3',
+		'description'   => esc_html__( 'Adicione widgets aqui.', 'sindconpe' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Area Destaque Conteudo Total', 'sindconpe' ),
+		'id'            => 'ad-col-full',
+		'description'   => esc_html__( 'Adicione widgets aqui.', 'sindconpe' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+
 }
-add_action( 'widgets_init', 'sindcon_widgets_init' );
+add_action( 'widgets_init', 'sindconpe_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function sindcon_scripts() {
-	wp_enqueue_style( 'sindcon-style', get_stylesheet_uri() );
+function sindconpe_scripts() {
+	wp_enqueue_style( 'sindconpe-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'sindcon-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'sindconpe-navigation', get_template_directory_uri() . '/dist/js/navigation.js', array(), '20151215', true );
 
-	wp_enqueue_script( 'sindcon-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'sindconpe-skip-link-focus-fix', get_template_directory_uri() . '/dist/js/skip-link-focus-fix.js', array(), '20151215', true );
+
+	wp_enqueue_script( 'sindconpe-jquery', get_template_directory_uri() . '/dist/js/jquery-3.3.1.min.js', array(), '20151215', true );
+	wp_enqueue_script( 'sindconpe-kubejs', get_template_directory_uri() . '/dist/js/kube.js', array(), '20151215', true );
+
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'sindcon_scripts' );
+add_action( 'wp_enqueue_scripts', 'sindconpe_scripts' );
 
 /**
  * Implement the Custom Header feature.

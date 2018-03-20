@@ -1,59 +1,83 @@
 <?php
 /**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * The front page of your site
  *
  * @package sindcon
  */
 
-get_header();
+ get_header();
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+<div id="primary" class="content-area">
+    <main id="main" class="site-main vt-space-sm">
+        <div class="container custom-container">
+            <div class="row gutters row--custom">
+                <div class="col col-12">
+                    <div class="vt-space-sm space-bottom">
+                        <div class="banner">
+                            <a href="#">
+                                <img src="<?php echo get_template_directory_uri() . '/dist/images/sorriso-para-todos.jpg'?>" alt="Sorriso Para Todos">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-8 col-posts">
+                    <?php 
+                        if ( get_query_var( 'paged') ) { 
+                            $paged = get_query_var( 'paged' ); 
+                        }
+                        elseif  ( get_query_var( 'page') ) {
+                            $paged = get_query_var( 'page' ); 
+                        }
+                        else {
+                            $paged = '1';
+                        }
+                        
+                        $args = array(
+                            'post_type'         =>  'post',
+                            'posts_per_page'    =>  '4',
+                            'paged'             =>  $paged,
+                            'nopaging'          => false
+						 );
+						$the_query = new WP_Query( $args );
+                        if ( $the_query->have_posts() ):  ?>
+                            <div class="row gutters">
+                                <?php
+                                while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                                    <div class="col col-6 post-container">
+                                        <?php get_template_part( 'template-parts/content', get_post_type() ); ?>
+                                    </div>
+								<?php endwhile;  ?>
+                                
+                            </div>
+                    <?php 
+						endif;
+						
+						wp_reset_postdata(); ?>
+                                
+						<div class="col col-12">
+						<?php 
+							the_posts_pagination( array(
+								'mid_size' => 1,
+								'prev_text' => __( 'Recente', 'sindconpe' ),
+								'next_text' => __( 'Antigo', 'sindconpe' ),
+								'screen_reader_text'	=>	__( 'Navegação de notícias' )
+							) );
+							
+						?>
+						</div>
 
-		<?php
-		if ( have_posts() ) :
-
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
-
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+                </div>
+                <div class="col col-4 col-sidebar">
+                    <?php get_sidebar(); ?>
+                </div>
+                <div class="col col-12">
+               
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
 
 <?php
-get_sidebar();
 get_footer();
