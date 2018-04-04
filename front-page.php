@@ -9,7 +9,7 @@
 ?>
 
 <div id="primary" class="content-area">
-    <main id="main" class="site-main">
+    <main id="main" class="site-main vt-space-sm">
         <div class="container custom-container">
             <div class="row gutters row--custom">
                 <div class="col col-12">

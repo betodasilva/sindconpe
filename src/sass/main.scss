@@ -136,6 +136,7 @@ $clr-greenlight: #A3DE83;
 
     @include desktop {
         padding: 70px;
+        border-radius: 10px;
     }
 
     background-color: #fff;
@@ -403,7 +404,7 @@ $clr-greenlight: #A3DE83;
 /* SITE MAIN */
 
 .content-area {
-    background: #525151;
+    background: #f8f8f8;
 }
 
 /* SIDEBAR */
