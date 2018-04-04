@@ -117,35 +117,14 @@ function sindconpe_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'          => esc_html__( 'Area Destaque Coluna 01', 'sindconpe' ),
-		'id'            => 'ad-col-1',
+		'name'          => esc_html__( 'Pesquisa no Cabeçalho', 'sindconpe' ),
+		'id'            => 'header-widget',
 		'description'   => esc_html__( 'Adicione widgets aqui.', 'sindconpe' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
-
-	register_sidebar( array(
-		'name'          => esc_html__( 'Area Destaque Coluna 02', 'sindconpe' ),
-		'id'            => 'ad-col-2',
-		'description'   => esc_html__( 'Adicione widgets aqui.', 'sindconpe' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-
-	register_sidebar( array(
-		'name'          => esc_html__( 'Area Destaque Coluna 03', 'sindconpe' ),
-		'id'            => 'ad-col-3',
-		'description'   => esc_html__( 'Adicione widgets aqui.', 'sindconpe' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-
 
 	register_sidebar( array(
 		'name'          => esc_html__( 'Area Destaque Conteudo Total', 'sindconpe' ),
