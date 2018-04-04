@@ -129,6 +129,7 @@ $clr-greenlight: #A3DE83;
 }
 
 .custom-container {
+    width: 100%;
     @media (min-width: 550px) {
         width: 90%;
     }
@@ -138,16 +139,45 @@ $clr-greenlight: #A3DE83;
     }
 
     background-color: #fff;
-    border-radius: 10px;
+    // border-radius: 10px;
+}
+
+.col-sidebar, .col-footer-widget {
+    @media (max-width: 480px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 
 
 /* HEADER */
 
+.header__top {
+    @include vt-padding(10px, 10px);
+    background-color: $color-aluminum;
+    box-shadow: 0 0px 2px 1px rgba($color: $clr-green, $alpha: 0.16);
+}
+.v-align-middle {
+    vertical-align: middle;
+}
+
+.no-decoration {
+    
+    text-decoration: none;
+    cursor: pointer; 
+    color: $color-midgray;
+    &:hover {
+        color: $clr-green;
+        > i {
+            color: $clr-green;
+        }
+    }
+}
+
 .site-header {
     @include vt-padding(1.125em, 0);
-    background-color: $color-aluminum;
+    background-color: #fff;
     @include desktop {
         padding: 0;
     }
@@ -164,6 +194,7 @@ $clr-greenlight: #A3DE83;
 
 .site-branding {
     align-self: center;
+    max-width: 440px;
 }
 
 .site-branding, 
@@ -173,11 +204,17 @@ $clr-greenlight: #A3DE83;
     }
 }
 
+.toggle-container {
+    @media (min-width: 769px) {
+        display: none !important;
+    }
+}
+
 /* NAVIGATION */
 
 .main-navigation {
    background-color: $clr-green;
-
+   transition: all 280ms ease;
    >.container {
         @media (min-width: 1024px) and (max-width: 1142px) {
             .nav-list > li {
@@ -366,7 +403,7 @@ $clr-greenlight: #A3DE83;
 /* SITE MAIN */
 
 .content-area {
-    background: #f6f6f6;
+    background: #525151;
 }
 
 /* SIDEBAR */
@@ -379,15 +416,13 @@ $clr-greenlight: #A3DE83;
 
 .site-description {
     position: relative !important;
-    color: $color-darkgray;
+    color: $clr-green;
 }
 
-.widget_search .search-submit {
-    color: $clr-green;
-    font-weight: 700;
-    margin-top: 15px;
-    cursor: pointer;
+.button.green{
+    @include button(#fff, $clr-green);
 }
+
 
 @include desktop {
 
@@ -397,6 +432,12 @@ $clr-greenlight: #A3DE83;
 
     .col-posts {
         padding-right: 0.85em;
+    }
+}
+
+@media (max-width: 768px) {
+    .col-posts {
+        padding: 20px;
     }
 }
 
@@ -535,27 +576,55 @@ $clr-greenlight: #A3DE83;
 
 /* WIDGETS */
 
+.header-widget {
+    margin-top: 10px;
+}
+.widget_search {
+    .screen-reader-text, .search-submit {
+        display: none;
+    }
+}
 .posts-by-tag-list .destaque{
     position: relative;
     max-width: 300px;
-
+    &:not(:last-child) {
+        margin-bottom: 30px;
+    }
     .thumb {
-        display: inline-block;
+        display: block;
         border-radius: 10px;
+        position: relative;
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; left: 0; bottom: 0;
+            background-color: rgba($color: $clr-green, $alpha: 0.26);
+        }
     }
 
     .posts-by-tag-item-title {
         z-index: 3;
-        color: $clr-green;
+        color: #fff;
+        text-shadow: 1px 1px #000;
         text-align: center;
         transition: all 280ms ease;
         font-weight: 700;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        line-height: 1.125;
+        transform: translate(-50%, -50%);
+
     }
 
     .read-more {
         color: $clr-green;
     }
 
+    @media (max-width: 480px) {
+        margin-right: auto;
+        margin-left: auto;
+    }
   
 }
 
@@ -643,7 +712,7 @@ $clr-greenlight: #A3DE83;
     }
 }
 
-.widget:not(.widget_sow-features) {
+.widget:not(.widget_sow-features):not(.widget_search) {
 
     input[type="submit"],
     input[type="button"] {
@@ -771,4 +840,38 @@ $clr-greenlight: #A3DE83;
 .entry-header .entry-title {
     padding-bottom: 20px;
     border-bottom: 1px dashed $clr-green;
+}
+
+/* FEATURED POSTS */
+
+.widget_custom_html {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+ul.fp-list {
+    list-style: none;
+    margin: 0;
+}
+
+.fp-list li {
+    line-height: 42px;
+    padding-left: 15px;
+    background-color: #509e60;
+    border-radius: 5px;
+    &:not(:last-child) {
+        margin-bottom: 10px;
+    }
+    
+}
+
+.fp-list li a {
+    display:  block;
+    text-decoration: none;
+    color: #fff;
+}
+
+.fp-list li a i{
+    vertical-align: middle;
+    margin-right: 20px;
 }
