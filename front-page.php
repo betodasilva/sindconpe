@@ -9,7 +9,7 @@
 ?>
 
 <div id="primary" class="content-area">
-    <main id="main" class="site-main vt-space-sm">
+    <main id="main" class="site-main">
         <div class="container custom-container">
             <div class="row gutters row--custom">
                 <div class="col col-12">
@@ -77,16 +77,13 @@
                 <div class="col col-4 col-sidebar">
                     <?php get_sidebar(); ?>
                 </div>
-                <div class="col col-12">
+                <div class="col col-12 col-footer-widget">
                     <?php 
                         $is_some_active = is_active_sidebar( 'ad-col-1' ) || is_active_sidebar( 'ad-col-2' ) || is_active_sidebar( 'ad-col-3' ) || is_active_sidebar( 'ad-col-full' );
                         if ( $is_some_active ) :  ?>
                             <div class="vt-space-sm">
                                 <div class="row gutters">
                                 <?php if ( is_active_sidebar( 'ad-col-full' ) ) echo '<div class="col col-12 text-center">'; dynamic_sidebar( 'ad-col-full' ); echo '</div>'; ?>
-                                    <?php if ( is_active_sidebar( 'ad-col-1' ) ) echo '<div class="col col-4 col-ad text-center">'; dynamic_sidebar( 'ad-col-1' ); echo '</div>'; ?>
-                                    <?php if ( is_active_sidebar( 'ad-col-2' ) ) echo '<div class="col col-4 col-ad text-center">'; dynamic_sidebar( 'ad-col-2' ); echo '</div>'; ?>
-                                    <?php if ( is_active_sidebar( 'ad-col-3' ) ) echo '<div class="col col-4 col-ad text-center">'; dynamic_sidebar( 'ad-col-2' ); echo '</div>'; ?>
                                 </div>
                             </div>
                     <?php endif; ?>
